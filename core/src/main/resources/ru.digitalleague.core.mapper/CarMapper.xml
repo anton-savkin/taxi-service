@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.digitalleague.core.mapper.CarMapper">
+    <resultMap id="car" type="ru.digitalleague.core.model.CarModel">
+        <id property="id" column="id"/>
+        <result property="model" column="model"/>
+        <result property="createDttm" column="createDttm"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, model, createDttm
+    </sql>
+
+    <insert id="insert" parameterType="ru.digitalleague.core.model.CarModel">
+        <!--@mbg.generated-->
+        <selectKey resultType="Long" keyProperty="id" order="BEFORE">
+            select nextval('car_seq')
+        </selectKey>
+        insert into car (id, model, createDttm)
+        values (#{id, jdbcType=BIGINT}, #{model, jdbcType=VARCHAR}, #{createDttm,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="car">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from car
+        where id = #{id, jdbcType=BIGINT}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="ru.digitalleague.core.model.CarModel">
+        <!--@mbg.generated-->
+        update car
+        set model = #{model,jdbcType=VARCHAR},
+        createDttm = #{createDttm,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="ru.digitalleague.core.model.CarModel">
+        <!--@mbg.generated-->
+        delete
+        from car
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+</mapper>

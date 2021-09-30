@@ -28,4 +28,12 @@ public interface TaxiInfoMapper {
     })
     @Select("SELECT driver_id, last_name, first_name, middle_name, level, car_model, create_dttm FROM taxi_drive_info")
     List<TaxiDriverInfoModel> getAllDrivers();
+
+    int insert(TaxiDriverInfoModel record);
+
+    TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
+
+    int updateByPrimaryKey(TaxiDriverInfoModel record);
+
+    int deleteByPrimaryKey(TaxiDriverInfoModel record);
 }
