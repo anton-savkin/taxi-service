@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.digitalleague.core.api.TaxiService;
 import ru.digitalleague.core.model.OrderDetails;
 
 @RestController
@@ -16,23 +17,14 @@ import ru.digitalleague.core.model.OrderDetails;
 public class OrderController {
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private AmqpTemplate amqpTemplate;
+    private TaxiService taxiService;
 
     @PostMapping("/order-taxi")
     public ResponseEntity<String> receive(@RequestBody OrderDetails orderDetails) {
-        log.info("Received message from postman" + orderDetails);
+        log.info("Received message from postman " + orderDetails);
 
-        String message = null;
-        try {
-            message = objectMapper.writeValueAsString(orderDetails);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        amqpTemplate.convertAndSend("order", message);
+        String result = taxiService.notifyTaxi(orderDetails);
 
-        return ResponseEntity.ok("Request to place order has been send");
+        return ResponseEntity.ok(result);
     }
 }

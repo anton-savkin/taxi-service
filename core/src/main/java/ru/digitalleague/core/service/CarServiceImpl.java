@@ -3,6 +3,8 @@ package ru.digitalleague.core.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.digitalleague.core.mapper.CarMapper;
 import ru.digitalleague.core.model.CarModel;
 
@@ -24,6 +26,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public int updateByPrimaryKey(CarModel record) {
         return carMapper.updateByPrimaryKey(record);
     }

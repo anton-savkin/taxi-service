@@ -25,6 +25,14 @@
         where driver_id = #{driverId,jdbcType=BIGINT}
     </select>
 
+    <select id="selectByLastName" parameterType="java.lang.String" resultMap="taxiDriver" useCache="false">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from taxi_drive_info
+        where last_name = #{lastName}
+    </select>
+
     <insert id="insert" parameterType="ru.digitalleague.core.model.TaxiDriverInfoModel">
         <!--@mbg.generated-->
         <selectKey resultType="Long" keyProperty="driverId" order="BEFORE">
@@ -56,4 +64,12 @@
         from taxi_drive_info
         where driver_id = #{driverId,jdbcType=BIGINT}
     </delete>
+
+    <select id="getAllDrivers1" resultMap="taxiDriver">
+        SELECT driver_id, last_name, first_name, middle_name, level, car_model, create_dttm FROM taxi_drive_info
+    </select>
+
+    <select id="getCount1" resultType="java.lang.Integer">
+        select count(1) from taxi_drive_info
+    </select>
 </mapper>

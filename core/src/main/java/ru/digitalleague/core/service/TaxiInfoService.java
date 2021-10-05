@@ -11,4 +11,8 @@ public interface TaxiInfoService {
     int updateByPrimaryKey(TaxiDriverInfoModel record);
 
     int deleteByPrimaryKey(TaxiDriverInfoModel record);
+
+    int getByIdAndUpdateLevel(Long driverId);
+
+    boolean twoSelectByIdWithSleep();
 }
