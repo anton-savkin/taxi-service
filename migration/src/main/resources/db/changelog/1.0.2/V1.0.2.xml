@@ -26,17 +26,17 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2021-10-07 13:10:00" author="asavkin">
+        <sqlFile path="sql/core/user_account.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/user_account_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
     <changeSet id="2021-10-07 13:20:00" author="asavkin">
         <sqlFile path="sql/core/authority.sql" relativeToChangelogFile="true"/>
         <rollback>
             <sqlFile path="sql/core/rollback/authority_rollback.sql" relativeToChangelogFile="true"/>
-        </rollback>
-    </changeSet>
-
-    <changeSet id="2021-10-07 13:30:00" author="asavkin">
-        <sqlFile path="sql/core/user_account.sql" relativeToChangelogFile="true"/>
-        <rollback>
-            <sqlFile path="sql/core/rollback/user_account_rollback.sql" relativeToChangelogFile="true"/>
         </rollback>
     </changeSet>
 
