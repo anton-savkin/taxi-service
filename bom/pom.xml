@@ -17,6 +17,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <mavem.compiler.target>1.8</mavem.compiler.target>
         <spring.boot.version>2.5.4</spring.boot.version>
+        <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
+        <digitalleague.common.version>0.0.1-SNAPSHOT</digitalleague.common.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -41,6 +43,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ru.digitalleague</groupId>
+                <artifactId>common</artifactId>
+                <version>${digitalleague.common.version}</version>
             </dependency>
 
         </dependencies>
