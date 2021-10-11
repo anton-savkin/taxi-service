@@ -80,7 +80,7 @@
     <insert id="insertAll">
         insert into authority (id, user_account_id, authority) values
         <foreach collection="list" item="entity" separator=",">
-            (nextval('authority_id_seq'), #{entity.userAccountId,jdbcType=BIGINT}, #{entity.authority,jdbcType=VARCHAR})
+            (nextval('auth_seq'), #{entity.userAccountId,jdbcType=BIGINT}, #{entity.authority,jdbcType=VARCHAR})
         </foreach>
     </insert>
 </mapper>

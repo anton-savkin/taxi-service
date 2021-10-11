@@ -1,5 +1,6 @@
 package ru.digitalleague.core.controller;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ public class UserAccountController {
     private final UserAccountService userAccountService;
 
     @PostMapping("/registration")
+    @ApiOperation(value="Контроллер для работы с аккаунтами пользователями")
     public ResponseEntity<UserAccountEntity> registration(
             @RequestBody UserAccountEntity userAccountEntity) {
 

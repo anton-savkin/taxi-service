@@ -31,7 +31,7 @@
     <insert id="insert" parameterType="ru.digitalleague.core.model.UserAccountEntity">
         <!--@mbg.generated-->
         <selectKey resultType="Long" keyProperty="id" order="BEFORE">
-            select nextval('user_account_id_seq');
+            select nextval('user_account_seq');
         </selectKey>
         insert into user_account (id, "login", "password")
         values (#{id,jdbcType=BIGINT}, #{login,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})

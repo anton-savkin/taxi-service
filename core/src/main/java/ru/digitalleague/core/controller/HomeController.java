@@ -1,5 +1,6 @@
 package ru.digitalleague.core.controller;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -25,6 +26,7 @@ public class HomeController {
     }
 
     @GetMapping("/auth")
+    @ApiOperation(value="Контроллер для аутентификации")
     public String auth(Principal principal) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

@@ -19,6 +19,7 @@
         <spring.boot.version>2.5.4</spring.boot.version>
         <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
         <digitalleague.common.version>0.0.1-SNAPSHOT</digitalleague.common.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -55,6 +56,18 @@
                 <groupId>ru.digitalleague</groupId>
                 <artifactId>common</artifactId>
                 <version>${digitalleague.common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
 
         </dependencies>
