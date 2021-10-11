@@ -22,10 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**").authenticated()
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/home").permitAll()
+                .antMatchers("/welcome").hasAnyAuthority("ADMIN", "USER", "MANAGER")
+                .antMatchers("/admin-info").hasAuthority("ADMIN")
+                .antMatchers("/manager-info").hasAuthority("MANAGER")
                 .and()
                 .formLogin()
                 .and()
-                .logout().logoutSuccessUrl("/home");
+                .logout().logoutSuccessUrl("/login");
     }
 
     @Bean
