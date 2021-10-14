@@ -17,11 +17,16 @@ public class OrderController {
     @Autowired
     private TaxiService taxiService;
 
+    /**
+     * Контроллер для заказа такси.
+     * @param orderDetails - детали заказа
+     * @return - HTTP Response
+     */
     @PostMapping("/order-taxi")
     @ApiOperation(value="Контроллер для заказа такси")
     public ResponseEntity<String> receive(@RequestBody OrderDetails orderDetails) {
-        log.info("Received message from postman " + orderDetails);
 
+        log.info("Received message from postman " + orderDetails);
         String result = taxiService.notifyTaxi(orderDetails);
 
         return ResponseEntity.ok(result);

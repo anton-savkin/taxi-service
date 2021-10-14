@@ -22,12 +22,14 @@ public class HomeController {
 
     @GetMapping("/home")
     public UserAccountEntity home(@RequestParam String login) {
+
         return userAccountService.test(login);
     }
 
     @GetMapping("/auth")
     @ApiOperation(value="Контроллер для аутентификации")
     public String auth(Principal principal) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         return "auth " + principal.getName();

@@ -18,11 +18,13 @@ public class MyBatisConfiguration {
     @Bean
     @Primary
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+
         return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setVfs(SpringBootVFS.class);

@@ -1,0 +1,1 @@
+alter table car alter column createdttm type timestamp with time zone;

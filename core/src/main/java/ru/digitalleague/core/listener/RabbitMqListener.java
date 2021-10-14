@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 public class RabbitMqListener {
 
     /**
-     * Получаем информацию о заказе.
+     * Метод, который слушает очередь "trip-result" и логирует информацию о заверщении поездки.
+     * @param message - информация о завершении поездки
      */
     @RabbitListener(queues = "trip-result")
     public void processRabbitMessage(String message) {

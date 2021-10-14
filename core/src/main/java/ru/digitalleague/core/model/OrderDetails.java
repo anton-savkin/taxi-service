@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @ApiModel(value="Модель заказа такси")
 public class OrderDetails {
+
     /**
      * Идентификатор клиента.
      */
@@ -30,5 +31,4 @@ public class OrderDetails {
      */
     @ApiModelProperty("Город")
     private String city;
-
 }

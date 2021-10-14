@@ -1,0 +1,1 @@
+drop constraint if exists city_queue_pk;

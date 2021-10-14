@@ -25,23 +25,28 @@ public class ApplicationConfiguration {
 
     @Bean
     public DataSource getDataSource() {
+
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
         dataSourceBuilder.url("jdbc:postgresql://localhost:5432/taxidb?currentSchema=taxi-service");
         dataSourceBuilder.username("postgres");
         dataSourceBuilder.password("postgres");
+
         return dataSourceBuilder.build();
     }
 
     @Bean
     public SpringLiquibase liquibase() {
+
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setShouldRun(false);
+
         return liquibase;
     }
 
     @Bean
     public Docket apiDocket() {
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())

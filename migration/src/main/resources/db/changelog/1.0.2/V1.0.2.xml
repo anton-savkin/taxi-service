@@ -40,4 +40,61 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2021-10-11 18:10:00" author="asavkin">
+        <sqlFile path="sql/core/alter_city_queue_add_port.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_city_queue_add_port_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:15:00" author="asavkin">
+        <sqlFile path="sql/core/alter_taxi_drive_info_create_dttm_type.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_create_dttm_type_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:20:00" author="asavkin">
+        <sqlFile path="sql/core/alter_car_createdttm_type.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_car_createdttm_type_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:25:00" author="asavkin">
+        <sqlFile path="sql/core/alter_taxi_drive_info_add_rate_is_busy_minute_cost.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_add_rate_is_busy_minute_cost_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:26:00" author="asavkin">
+        <sqlFile path="sql/core/alter_city_queue_add_pk.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_city_queue_add_pk_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:30:00" author="asavkin">
+        <sqlFile path="sql/core/alter_taxi_drive_info_add_city_id.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_add_city_id_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:35:00" author="asavkin">
+        <sqlFile path="sql/core/alter_taxi_drive_info_add_car_id.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_add_car_id_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 18:40:00" author="asavkin">
+        <sqlFile path="sql/core/orders.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/orders_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+
 </databaseChangeLog>

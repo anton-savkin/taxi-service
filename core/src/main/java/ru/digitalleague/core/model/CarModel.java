@@ -7,6 +7,9 @@ import java.time.OffsetDateTime;
 @Data
 public class CarModel {
 
+    /**
+     * Идентификатор машины.
+     */
     private Long id;
 
     /**

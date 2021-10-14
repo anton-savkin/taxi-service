@@ -8,7 +8,9 @@ import ru.digitalleague.core.model.OrderDetails;
 public interface TaxiService {
 
     /**
-     * Информируем такси о поступлении заказа.
+     * Метод для информоривания такси о поступлении заказа.
+     * @param orderDetails - детали заказа
+     * @return - ответ от сервиса
      */
     String notifyTaxi(OrderDetails orderDetails);
 }
