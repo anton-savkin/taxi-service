@@ -1,9 +1,6 @@
 package ru.digitalleague.core.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import ru.digitalleague.core.model.TaxiDriverInfoModel;
 
@@ -34,9 +31,10 @@ public interface TaxiInfoMapper {
             @Result(property = "isBusy", column = "is_busy"),
             @Result(property = "minuteCost", column = "minute_cost"),
             @Result(property = "cityID", column = "city_id"),
-            @Result(property = "carID", column = "car_id")
+            @Result(property = "carID", column = "car_id"),
+            @Result(property = "ordersCnt", column = "orders_cnt")
     })
-    @Select("SELECT driver_id, last_name, first_name, level, create_dttm, rate, is_busy, minute_cost, city_id, car_id FROM taxi_drive_info")
+    @Select("SELECT driver_id, last_name, first_name, level, create_dttm, rate, is_busy, minute_cost, city_id, car_id, orders_cnt FROM taxi_drive_info")
     List<TaxiDriverInfoModel> getAllDrivers();
 
     /**
@@ -49,7 +47,22 @@ public interface TaxiInfoMapper {
 
     int insert(TaxiDriverInfoModel record);
 
+    /**
+     * Метод для поиска водителя по идентификатору.
+     * @param driverId - идентификатор водителя
+     * @return - модель водителя
+     * */
+    @Select("SELECT * FROM taxi_drive_info WHERE driver_id = #{driverId}")
     TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
+
+    /**
+     * Метод обновления информации о водителе после выставления рейтинга.
+     * @param driverId - идетификатор водителя
+     * @param ordersCnt - обновленное количество поездок
+     * @param rate - обновленный рейтинг
+     * */
+    @Update("UPDATE taxi_drive_info SET orders_cnt = #{ordersCnt}, rate = #{rate} WHERE driver_id = #{driverId}")
+    void updateOrdersCntAndRateByDriverId(Long driverId, int ordersCnt, double rate);
 
     int updateByPrimaryKey(TaxiDriverInfoModel record);
 

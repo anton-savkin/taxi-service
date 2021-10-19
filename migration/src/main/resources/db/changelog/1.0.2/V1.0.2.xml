@@ -96,5 +96,18 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="2021-10-19 13:20:00" author="asavkin">
+        <sqlFile path="sql/core/alter_taxi_drive_info_change_rate_type_add_orders_counter.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_change_rate_type_add_orders_counter_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-19 13:30:00" author="asavkin">
+        <sqlFile path="sql/core/alter_orders_add_price.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_orders_add_price_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

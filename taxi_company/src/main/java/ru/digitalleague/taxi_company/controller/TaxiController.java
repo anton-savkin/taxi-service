@@ -4,15 +4,15 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.digitalleague.taxi_company.api.OrderService;
 import ru.digitalleague.taxi_company.mapper.DriversMapper;
 import ru.digitalleague.taxi_company.mapper.OrderMapper;
 import ru.digitalleague.taxi_company.model.OrderModel;
-
-import java.time.OffsetDateTime;
 
 /**
  * Контроллер получающий информацию о поездке.
@@ -32,6 +32,9 @@ public class TaxiController {
     @Autowired
     private DriversMapper driversMapper;
 
+    @Autowired
+    private OrderService orderService;
+
     /**
      * Метод для начала поездки и обновления БД.
      * @param orderModel - заказ
@@ -39,14 +42,18 @@ public class TaxiController {
      * */
     @PostMapping("/trip-start")
     @ApiOperation(value="Контроллер начала поездки")
-    public ResponseEntity<String> startTrip(@RequestBody OrderModel orderModel) {
+    public ResponseEntity<OrderModel> startTrip(@RequestBody OrderModel orderModel) {
 
-        Long orderID = orderModel.getOrderID();
-        orderMapper.setStartTrip(orderID);
+        if (orderModel == null) {
 
-        log.info("Order with ID {} is started", orderID);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        return ResponseEntity.ok("Водитель начал оказывать услугу");
+
+        orderModel = orderService.startTrip(orderModel);
+        log.info("Order {} is started", orderModel);
+
+        return ResponseEntity.ok(orderModel);
     }
 
     /**
@@ -56,18 +63,18 @@ public class TaxiController {
      * */
     @PostMapping("/trip-complete")
     @ApiOperation(value="Контроллер для окончания поездки")
-    public ResponseEntity<String> completeTrip(@RequestBody OrderModel orderModel) {
+    public ResponseEntity<OrderModel> completeTrip(@RequestBody OrderModel orderModel) {
 
-        Long orderID = orderModel.getOrderID();
-        Long driverID = orderMapper.getDriverIDByOrderID(orderID);
+        if (orderModel == null) {
 
-        orderMapper.setEndTime(orderID);
-        driversMapper.changeBusy(driverID);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        log.info("Order with ID {} is completed", orderID);
+        orderModel = orderService.completeTrip(orderModel);
+        log.info("Order {} is completed", orderModel);
 
         amqpTemplate.convertAndSend("trip-result", message);
 
-        return ResponseEntity.ok("Услуга оказана");
+        return ResponseEntity.ok(orderModel);
     }
 }

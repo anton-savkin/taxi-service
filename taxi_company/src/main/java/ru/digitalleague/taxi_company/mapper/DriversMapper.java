@@ -2,8 +2,8 @@ package ru.digitalleague.taxi_company.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import ru.digitalleague.taxi_company.model.OrderDetails;
-import ru.digitalleague.taxi_company.model.TaxiDriverInfoModel;
+import ru.digitalleague.core.model.OrderDetails;
+import ru.digitalleague.core.model.TaxiDriverInfoModel;
 
 @Repository
 @Mapper
@@ -33,10 +33,17 @@ public interface DriversMapper {
             @Result(property = "isBusy", column = "is_busy"),
             @Result(property = "minuteCost", column = "minute_cost"),
             @Result(property = "cityID", column = "city_id"),
-            @Result(property = "carID", column = "car_id")
+            @Result(property = "carID", column = "car_id"),
+            @Result(property = "ordersCnt", column = "orders_cnt")
 
     })
-    @Select("SELECT driver_id, last_name, first_name, level, create_dttm, rate, is_busy, minute_cost, city_id, car_id FROM taxi_drive_info WHERE is_busy = false AND city_id = #{cityId} ORDER BY rate DESC LIMIT 1")
+    @Select("SELECT driver_id, last_name, first_name, level, create_dttm, rate, is_busy, minute_cost, city_id, car_id, orders_cnt FROM taxi_drive_info WHERE is_busy = false AND city_id = #{cityId} ORDER BY rate DESC LIMIT 1")
     TaxiDriverInfoModel getDriver(OrderDetails orderDetails, Long cityId);
 
+    /**
+     * Метод для получения стоимости минуты поездки по идентификатору водителя.
+     * @param driverID - идентификатор водителя
+     * */
+    @Select("SELECT minute_cost FROM taxi_drive_info WHERE driver_id = #{driverID}")
+    Integer getMinuteCost(Long driverID);
 }

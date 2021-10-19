@@ -13,4 +13,11 @@ public interface TaxiService {
      * @return - ответ от сервиса
      */
     String notifyTaxi(OrderDetails orderDetails);
+
+    /**
+     * Метод для выставления рейтинга водителю.
+     * @param driverId - идентификатор водителя
+     * @param rate - рейтинг за поездку
+     */
+    void rateDriver(Long driverId, double rate);
 }

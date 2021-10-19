@@ -1,7 +1,8 @@
 package ru.digitalleague.taxi_company.api;
 
-import ru.digitalleague.taxi_company.model.OrderDetails;
-import ru.digitalleague.taxi_company.model.TaxiDriverInfoModel;
+import ru.digitalleague.core.model.OrderDetails;
+import ru.digitalleague.core.model.TaxiDriverInfoModel;
+import ru.digitalleague.taxi_company.model.OrderModel;
 
 /**
  * Сервис обработки заказов.
@@ -20,4 +21,26 @@ public interface OrderService {
      * @return - выбранный водитель
      */
     TaxiDriverInfoModel getDriver(OrderDetails orderDetails);
+
+    /**
+     * Метод для начала поездки.
+     * @param orderModel - модель заказа
+     * @return - обновленная модель заказа
+     */
+    OrderModel startTrip(OrderModel orderModel);
+
+    /**
+     * Метод для окончания поездки.
+     * @param orderModel - модель заказа
+     * @return - обновленная модель заказа
+     */
+    OrderModel completeTrip(OrderModel orderModel);
+
+    /**
+     * Метод для рассчета стоимости поездки.
+     * @param orderID - идентификатор заказа
+     * @param driverID - идентификатор водителя
+     * @return - стоимость поездки
+     */
+    Long estimatePrice(Long orderID, Long driverID);
 }

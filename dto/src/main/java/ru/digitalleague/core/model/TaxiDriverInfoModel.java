@@ -1,4 +1,4 @@
-package ru.digitalleague.taxi_company.model;
+package ru.digitalleague.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -44,7 +44,7 @@ public class TaxiDriverInfoModel {
      * Рейтинг водителя.
      */
     @ApiModelProperty("Рейтинг водителя")
-    private int rate;
+    private double rate;
 
     /**
      * Флаг свободен\занят.
@@ -69,4 +69,10 @@ public class TaxiDriverInfoModel {
      */
     @ApiModelProperty("Идентификатор машины")
     private Long carID;
+
+    /**
+     * Счетчик поездок.
+     */
+    @ApiModelProperty("Счетчик поездок")
+    private int ordersCnt;
 }

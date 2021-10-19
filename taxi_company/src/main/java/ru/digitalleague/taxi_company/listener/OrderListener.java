@@ -8,8 +8,8 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.digitalleague.core.model.OrderDetails;
 import ru.digitalleague.taxi_company.api.OrderService;
-import ru.digitalleague.taxi_company.model.OrderDetails;
 
 @Slf4j
 @Component

@@ -13,11 +13,12 @@
         <result property="minuteCost" column="minute_cost"/>
         <result property="cityID" column="city_id"/>
         <result property="carID" column="car_id"/>
+        <result property="ordersCnt" column="orders_cnt"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id
+        driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id, orders_cnt
     </sql>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="taxiDriver">
@@ -41,10 +42,10 @@
         <selectKey resultType="Long" keyProperty="driverId" order="BEFORE">
             select nextval('taxi_driver_seq');
         </selectKey>
-        insert into taxi_drive_info (driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id)
+        insert into taxi_drive_info (driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id, orders_cnt)
         values (#{driverId,jdbcType=BIGINT}, #{lastName,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR},
-        #{level,jdbcType=INTEGER}, #{createDttm,jdbcType=TIMESTAMP}, #{rate,jdbcType=INTEGER}, #{isBusy,jdbcType=BOOLEAN},
-        #{minuteCost,jdbcType=INTEGER}, #{cityID,jdbcType=LONG}, #{carID,jdbcType=LONG})
+        #{level,jdbcType=INTEGER}, #{createDttm,jdbcType=TIMESTAMP}, #{rate,jdbcType=DOUBLE}, #{isBusy,jdbcType=BOOLEAN},
+        #{minuteCost,jdbcType=INTEGER}, #{cityID,jdbcType=LONG}, #{carID,jdbcType=LONG}, #{ordersCnt,jdbcType=INTEGER})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="ru.digitalleague.core.model.TaxiDriverInfoModel">
@@ -54,11 +55,12 @@
         first_name = #{firstName,jdbcType=VARCHAR},
         "level" = #{level,jdbcType=INTEGER},
         create_dttm = #{createDttm,jdbcType=TIMESTAMP},
-        rate = #{rate,jdbcType=INTEGER},
+        rate = #{rate,jdbcType=DOUBLE},
         is_busy = #{isBusy,jdbcType=BOOLEAN},
         minute_cost = #{minuteCost,jdbcType=INTEGER},
         city_id = #{cityID,jdbcType=LONG},
-        car_id = #{carID,jdbcType=LONG}
+        car_id = #{carID,jdbcType=LONG},
+        orders_cnt = #{ordersCnt,jdbcType=INTEGER}
         where driver_id = #{driverId,jdbcType=BIGINT}
     </update>
 
@@ -70,7 +72,7 @@
     </delete>
 
     <select id="getAllDrivers1" resultMap="taxiDriver">
-        SELECT driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id FROM taxi_drive_info
+        SELECT driver_id, last_name, first_name, "level", create_dttm, rate, is_busy, minute_cost, city_id, car_id, orders_cnt FROM taxi_drive_info
     </select>
 
     <select id="getCount1" resultType="java.lang.Integer">

@@ -40,6 +40,12 @@ public class OrderModel {
     @ApiModelProperty("Время окончания поездки")
     private OffsetDateTime endTrip;
 
+    /**
+     * Стоимость поездки.
+     */
+    @ApiModelProperty("Стоимость поездки")
+    private Integer price;
+
 
 
 
